@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>固定任务库中的训练预算分配 · 公开阅读版</title>
+<meta name="description" content="固定任务库中均匀分配的条件命题、完整证明、反例及后续研究计划。">
+<style>
+:root{--ink:#19332d;--body:#283732;--muted:#6a7972;--accent:#17674d;--line:#dce5df;--paper:#fff;--back:#f4f6f2;--wash:#edf5ef}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:36px}body{margin:0;background:var(--back);color:var(--body);font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.95}
+.topline{height:7px;background:var(--accent)}.layout{max-width:1320px;margin:auto;padding:38px 32px 80px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:36px}
+aside{position:sticky;top:30px;align-self:start;padding:14px 8px}aside .eyebrow{font-size:11px;letter-spacing:2px;color:var(--accent);font-weight:700}aside .nav-title{font-size:19px;font-weight:700;line-height:1.6;margin:10px 0 25px;color:var(--ink)}nav a{display:block;color:#42554b;text-decoration:none;font-size:13px;line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line)}nav a:hover{color:var(--accent)}.local-note{font-size:12px;color:var(--muted);margin-top:25px;line-height:1.8}.local-note a{color:var(--accent)}
+main{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:42px 52px;min-width:0;box-shadow:0 12px 36px #1a362709}
+h1,h2,h3{color:var(--ink);line-height:1.55;scroll-margin-top:30px}h1{font-size:32px;letter-spacing:-.8px;margin:0 0 14px;font-weight:750}h1+p{font-size:15px;color:var(--accent);margin-top:0;line-height:1.65}h1+p+p,h1+p+p+p{font-size:13px;color:var(--muted);margin:5px 0}
+h2{font-size:23px;margin:46px 0 19px;padding-top:13px;border-top:1px solid var(--line)}h3{font-size:18px;margin:30px 0 12px}p{margin:13px 0}strong{color:var(--ink)}a{color:var(--accent);text-underline-offset:4px}ul,ol{padding-left:1.6em;margin:14px 0}li{padding-left:.12em;margin:7px 0}li p{margin:6px 0}blockquote{margin:22px 0;padding:12px 22px;background:var(--wash);border-left:4px solid var(--accent);border-radius:0 7px 7px 0}blockquote p{margin:7px 0;font-size:15px}hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.7}th{text-align:left;font-weight:650;background:var(--wash)}th,td{padding:11px 15px;border:1px solid var(--line);vertical-align:top}th:first-child,td:first-child{width:49%}
+math{font-family:"Cambria Math","STIX Two Math",math;font-size:1.09em}.equation{overflow-x:auto;overflow-y:hidden;padding:16px 10px;margin:17px 0;background:#f8faf8;border:1px solid #e5ece6;border-radius:7px;break-inside:avoid}.equation math{margin:0 auto;font-size:1.16em;min-width:min-content}code{font-size:.9em;background:var(--wash);padding:2px 5px;border-radius:3px}main>p:last-child{font-size:12px;color:var(--muted)}footer{margin:34px 0 0;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media(max-width:1000px){.layout{grid-template-columns:190px minmax(0,1fr);gap:20px;padding:24px 18px}main{padding:32px}h1{font-size:29px}}
+@media(max-width:760px){.layout{display:block;padding:12px 10px 35px}aside{display:none}main{padding:25px 21px;border-radius:9px}h1{font-size:26px}h2{font-size:21px}h3{font-size:17px}body{font-size:15px}blockquote{padding:10px 15px}.equation{padding:15px 8px}th,td{padding:8px 10px}}
+@media print{body{background:#fff;font-size:11pt;line-height:1.65}.topline,aside{display:none}.layout{display:block;padding:0;max-width:none}main{border:0;box-shadow:none;padding:0}h1{font-size:23pt}h2{font-size:16pt}h3{font-size:13pt}h1,h2,h3{break-after:avoid}.equation{background:#fff}a{color:inherit}.table-wrap{overflow:visible}footer{display:none}}
+</style></head><body><div class="topline"></div><div class="layout">
+<aside><div class="eyebrow">RESEARCH NOTE · 2026</div><div class="nav-title">固定任务库中的<br>训练预算分配</div><nav><a href="#先读这里">先读这里</a><a href="#1-问题与基本概念">1. 问题与基本概念</a>
+<a href="#2-风险对象与对称性">2. 风险对象与对称性</a>
+<a href="#3-命题-1均匀分配的条件结论">3. 命题 1：均匀分配的条件结论</a>
+<a href="#4-命题-1-的完整证明">4. 命题 1 的完整证明</a>
+<a href="#5-四个反例对称性不能决定极值方向">5. 四个反例：对称性不能决定极值方向</a>
+<a href="#6-命题-2-的假设与扩展计划">6. 命题 2 的假设与扩展计划</a>
+<a href="#7-应用边界与验证思路">7. 应用边界与验证思路</a>
+<a href="#8-文献定位与待确认问题">8. 文献定位与待确认问题</a></nav><div class="local-note">离线阅读版<br>公式无需联网即可显示。<br><a href="README.md">查看 Markdown 原文</a></div></aside>
+<main><h1 id="固定任务库中的训练预算分配">固定任务库中的训练预算分配</h1>
+<p><strong>Task–Episode Allocation: Conditions, Proofs, and Limits</strong></p>
+<p>理论研究笔记 · 单 cluster、同质任务、固定任务库</p>
+<p>原稿：2026-09-23 · 公开阅读版：2026-09-29</p>
+<h2 id="先读这里">先读这里</h2>
+<p>当训练只能使用固定数量的 episodes 时，应该怎样把它们分配给不同任务？这份笔记先研究其中一个明确的问题：<strong>任务库容量不变时，什么条件能够保证均匀分配最优？</strong></p>
+<p>答案需要分层理解：在可微条件下，对称性只能保证均匀分配是一阶驻点；再加上凸性，或“任意一次成对平均都不增加风险”的条件，才能保证它是全局最优分配。对于整数预算，凸性保证至少存在一个尽可能均衡的最优分配。</p>
+<blockquote>
+<p><strong>结论边界</strong></p>
+<p>本文给出的是条件命题及其证明，不是对真实训练过程的普遍断言。本文尚未证明 PFN 的真实测试风险满足这些条件，也未报告训练实验结果。后文的随机效应模型仅完成假设设定，方差推导和最优分配仍属于下一阶段工作。</p>
+</blockquote>
+<h3 id="内容与阅读路径">内容与阅读路径</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想了解什么</th>
+<th>对应章节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任务、episode 和预算分别是什么</td>
+<td><a href="#1-%E9%97%AE%E9%A2%98%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">1. 问题与基本概念</a></td>
+</tr>
+<tr>
+<td>为什么“任务同分布”还不够</td>
+<td><a href="#2-%E9%A3%8E%E9%99%A9%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E7%A7%B0%E6%80%A7">2. 风险对象与对称性</a></td>
+</tr>
+<tr>
+<td>均匀分配在什么条件下最优</td>
+<td><a href="#3-%E5%91%BD%E9%A2%98-1%E5%9D%87%E5%8C%80%E5%88%86%E9%85%8D%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BB%93%E8%AE%BA">3. 命题 1</a></td>
+</tr>
+<tr>
+<td>每条结论怎样证明</td>
+<td><a href="#4-%E5%91%BD%E9%A2%98-1-%E7%9A%84%E5%AE%8C%E6%95%B4%E8%AF%81%E6%98%8E">4. 完整证明</a></td>
+</tr>
+<tr>
+<td>为什么不能仅凭对称性下结论</td>
+<td><a href="#5-%E5%9B%9B%E4%B8%AA%E5%8F%8D%E4%BE%8B%E5%AF%B9%E7%A7%B0%E6%80%A7%E4%B8%8D%E8%83%BD%E5%86%B3%E5%AE%9A%E6%9E%81%E5%80%BC%E6%96%B9%E5%90%91">5. 四个反例</a></td>
+</tr>
+<tr>
+<td>下一阶段准备研究什么</td>
+<td><a href="#6-%E5%91%BD%E9%A2%98-2-%E7%9A%84%E5%81%87%E8%AE%BE%E4%B8%8E%E6%89%A9%E5%B1%95%E8%AE%A1%E5%88%92">6. 命题 2 的假设与扩展计划</a></td>
+</tr>
+<tr>
+<td>如何联系训练、检验假设</td>
+<td><a href="#7-%E5%BA%94%E7%94%A8%E8%BE%B9%E7%95%8C%E4%B8%8E%E9%AA%8C%E8%AF%81%E6%80%9D%E8%B7%AF">7. 应用边界与验证思路</a></td>
+</tr>
+<tr>
+<td>哪些是已知结果、哪些仍待确认</td>
+<td><a href="#8-%E6%96%87%E7%8C%AE%E5%AE%9A%E4%BD%8D%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E9%97%AE%E9%A2%98">8. 文献定位与待确认问题</a></td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="1-问题与基本概念">1. 问题与基本概念</h2>
+<h3 id="11-固定什么分配什么">1.1 固定什么，分配什么</h3>
+<p>设潜在任务空间为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>𝒯</mi></mrow></math>。训练任务库由 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math> 个独立同分布的任务构成：</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>𝐓</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>T</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>T</mi><mi>M</mi></msub><mo stretchy="false">)</mo><mo>,</mo><mspace width="2em" /><msub><mi>T</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>T</mi><mi>M</mi></msub><mover><mrow><mi>~</mi></mrow><mrow><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow></mrow></mover><msub><mi>P</mi><mrow><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">k</mi></mrow></mrow></msub><mo>.</mo></mrow></math></div>
+<p>测试任务 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>T</mi><mo>*</mo></msub><mi>~</mi><msub><mi>P</mi><mrow><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">k</mi></mrow></mrow></msub></mrow></math> 与训练任务库独立。本轮仅考虑一个 cluster，即任务分布中一个预先定义的子群；训练任务与测试任务来自同一分布，不假设已经识别出多个 cluster。</p>
+<p>给定正整数 episode 预算 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math>，选择分配向量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>n</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>n</mi><mi>M</mi></msub><mo stretchy="false">)</mo></mrow></math>，满足</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><msub><mi>n</mi><mi>i</mi></msub><mo>=</mo><mi>B</mi><mo>.</mo></mrow></math></div>
+<p>其中，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>n</mi><mi>i</mi></msub></mrow></math> 是任务 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>i</mi></mrow></math> 在训练中被呈现的 episode 次数，也称其<strong>暴露次数（exposure）</strong>。本轮固定任务库容量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math>，并要求所有 episodes 使用相同的上下文集／查询集规格及名义成本。</p>
+<p>这里的“同质”是本轮的分布与协议设定，并不意味着每一个实际抽到的任务都同样困难。</p>
+<h3 id="12-task-与-episode-不是同一层对象">1.2 task 与 episode 不是同一层对象</h3>
+<p>**任务（task）**是决定条件 episode 分布 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>e</mi><mo>∣</mo><mi>T</mi><mo stretchy="false">)</mo></mrow></math> 的潜在机制。在单表数据中，也可以约定一个名义任务（nominal task），例如某组输入列、目标列与数据源的组合。同一个名义任务出现两次，不应算成两个不同任务；不同名义任务也可能共享底层数据表、数据行或生成机制。</p>
+<p><strong>episode</strong> 是一次抽取的上下文集与查询集：</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>e</mi><mo>=</mo><mo stretchy="false">(</mo><mi>C</mi><mo>,</mo><mi>Q</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="2em" /><msub><mi>s</mi><mi>C</mi></msub><mo>=</mo><mo stretchy="false">|</mo><mi>C</mi><mo stretchy="false">|</mo><mo>,</mo><mspace width="2em" /><msub><mi>s</mi><mi>Q</mi></msub><mo>=</mo><mo stretchy="false">|</mo><mi>Q</mi><mo stretchy="false">|</mo><mo>.</mo></mrow></math></div>
+<p>固定任务 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi></mrow></math> 后，抽取多个 episodes <strong>不自动意味着这些 episodes 条件独立</strong>。如果它们共享有限的数据表或行池，就需要另外规定联合抽样模型。</p>
+<h3 id="13-任务库容量与实际暴露数量">1.3 任务库容量与实际暴露数量</h3>
+<p>任务库提供 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math> 个可用任务槽位。沿用原稿的暴露计数记号，</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><mn>𝟏</mn><mo stretchy="false">{</mo><msub><mi>n</mi><mi>i</mi></msub><mo>&gt;</mo><mn>0</mn><mo stretchy="false">}</mo><mo>≤</mo><mi>M</mi><mo>.</mo></mrow></math></div>
+<p>因此，任务库容量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math> 与实际被使用的数量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></math> 不相同。对于整数暴露次数，如果 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&lt;</mo><mi>M</mi></mrow></math>，必然有 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>&lt;</mo><mi>M</mi></mrow></math>。</p>
+<blockquote>
+<p><strong>计数口径说明</strong></p>
+<p>上式直接统计的是被使用的任务槽位。原稿将其称为暴露过的 unique tasks 数；如果同一个名义任务能够占据多个槽位，这个数就不一定等于去重后的任务数。本文保留原公式，不额外假设任务身份互异；实际应用时仍需确定任务身份与去重口径。</p>
+</blockquote>
+<h3 id="14-episode-数计算成本和独立信息量要分开">1.4 episode 数、计算成本和独立信息量要分开</h3>
+<p>预算 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>=</mo><msub><mo>∑</mo><mi>i</mi></msub><msub><mi>n</mi><mi>i</mi></msub></mrow></math> 只是<strong>名义 episode 数</strong>，不能直接当作独立任务数、独立数据行数或统计有效样本量。</p>
+<p>更一般的成本可写为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>C</mi><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>c</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><msub><mi>c</mi><mn>0</mn></msub><mi>m</mi><mo>,</mo></mrow></math></div>
+<p>其中，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo></mrow></math> 表示 episode 成本，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>c</mi><mn>0</mn></msub></mrow></math> 表示任务固定成本。数据单元或 token 用量与 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>C</mi></msub><mo>,</mo><msub><mi>s</mi><mi>Q</mi></msub></mrow></math> 所规定的 episode 规格有关。本轮采用等规格、等单位 episode 成本且不含任务固定成本的特殊情形，因此</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>C</mi><mo>∝</mo><mi>B</mi><mo>.</mo></mrow></math></div>
+<p>优化步数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> 是另一个量。只有在每步恰好使用 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi></mrow></math> 个 episodes、没有丢弃且训练协议固定时，才有</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>b</mi></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>至于独立信息量，则需要通过相关结构或有效样本量另外刻画。</p>
+<h2 id="2-风险对象与对称性">2. 风险对象与对称性</h2>
+<h3 id="21-给定任务库的风险与随机任务库的平均风险">2.1 给定任务库的风险，与随机任务库的平均风险</h3>
+<p>令 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math> 表示完整训练协议，包括模型、初始化、任务调度、episode 生成、批大小、优化器及步数规则。给定一个已经实现的任务库 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>𝐓</mi></mrow></math>，其条件测试风险定义为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtable><mtr><mtd columnalign="right"><msub><mi>R</mi><mrow><mi>𝐓</mi></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mtd><mtd columnalign="left"><mo>=</mo><msub><mi>𝔼</mi><mrow><mi>ℰ</mi><mo>,</mo><mi>ξ</mi><mo>,</mo><msub><mi>T</mi><mo>*</mo></msub><mo>,</mo><msub><mi>e</mi><mo>*</mo></msub></mrow></msub><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mi>ℓ</mi><mspace width="negativethinmathspace" /><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><mi>A</mi><mo stretchy="false">(</mo><mi>𝐓</mi><mo>,</mo><mi>n</mi><mo>,</mo><mi>ℰ</mi><mo>,</mo><mi>ξ</mi><mo stretchy="false">)</mo><mi>;</mi><msub><mi>e</mi><mo>*</mo></msub><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mo>∣</mo><mi>𝐓</mi><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right"><msub><mi>e</mi><mo>*</mo></msub></mtd><mtd columnalign="left"><mi>~</mi><mi>P</mi><mo stretchy="false">(</mo><mo>·</mo><mo>∣</mo><msub><mi>T</mi><mo>*</mo></msub><mo stretchy="false">)</mo><mo>.</mo></mtd></mtr></mtable></mrow></math></div>
+<p>这里，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>ℰ</mi></mrow></math> 包含所有训练 episodes；<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>ξ</mi></mrow></math> 包含初始化、批次顺序等训练随机性；<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>ℓ</mi></mrow></math> 是测试 episode 上的损失。</p>
+<p>本轮优化的对象是<strong>事前风险（ex ante risk）</strong>：它还对任务库本身的随机性取平均。</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>𝔼</mi><mrow><mi>𝐓</mi></mrow></msub><msub><mi>R</mi><mrow><mi>𝐓</mi></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>直观上，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mrow><mi>𝐓</mi></mrow></msub></mrow></math> 问的是“这一组已抽到的任务如何分配更好”，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover></mrow></math> 问的是“反复抽取任务库时，哪种分配平均更好”。二者不能直接互换。</p>
+<p>优化问题为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mo>min</mo><mrow><mi>n</mi><mo>∈</mo><msubsup><mi>Δ</mi><mi>B</mi><mi>M</mi></msubsup></mrow></msub><mover><mi>R</mi><mo stretchy="true">¯</mo></mover><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="2em" /><msubsup><mi>Δ</mi><mi>B</mi><mi>M</mi></msubsup><mo>=</mo><mrow><mo stretchy="true" fence="true" form="prefix">{</mo><mi>n</mi><mo>∈</mo><msubsup><mi>ℝ</mi><mrow><mo>≥</mo><mn>0</mn></mrow><mrow><mi>M</mi></mrow></msubsup><mi>:</mi><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></msubsup><msub><mi>n</mi><mi>i</mi></msub><mo>=</mo><mi>B</mi><mo stretchy="true" fence="true" form="postfix">}</mo></mrow><mo>.</mo></mrow></math></div>
+<p>这里允许实数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>n</mi><mi>i</mi></msub></mrow></math>，表示规划松弛或平滑后的风险模型；实际的 episode 暴露次数仍为整数，见命题 1 的整数结论。</p>
+<p>如果调度依赖任务标签，或者改变 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> 的同时改变了优化步数，就必须把这些变化纳入 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></math> 的定义。<strong>只有各任务的计数，还不足以定义实际训练风险。</strong></p>
+<h3 id="22-对称性需要额外的协议条件">2.2 对称性需要额外的协议条件</h3>
+<p>任务独立同分布，只能保证任务库的联合分布在置换下不变。要进一步得到分配风险的对称性，还需要：</p>
+<ul>
+<li>训练和评估协议对任务标签等变，即同步重排任务及其分配时，协议作相应重排；</li>
+<li>各任务使用相同的 episode 规格；</li>
+<li>各任务使用相同的损失权重。</li>
+</ul>
+<p>在这些条件下，对任意任务置换 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>π</mi></mrow></math>，有</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover><mo stretchy="false">(</mo><msub><mi>n</mi><mrow><mi>π</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>n</mi><mrow><mi>π</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><mover><mi>R</mi><mo stretchy="true">¯</mo></mover><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>但对于某一个已经实现的任务库，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mrow><mi>𝐓</mi></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></math> 一般并不对称。对应的等变关系是</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>R</mi><mrow><mi>π</mi><mi>𝐓</mi></mrow></msub><mo stretchy="false">(</mo><mi>π</mi><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>R</mi><mrow><mi>𝐓</mi></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>也就是说，应同时重排任务库与分配，而不是固定任务库后仅交换暴露次数。</p>
+<h2 id="3-命题-1均匀分配的条件结论">3. 命题 1：均匀分配的条件结论</h2>
+<p>以下使用抽象风险函数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 陈述命题；将其用于 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover></mrow></math> 之前，需要逐项确认假设。</p>
+<p>**共同前提：**<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>≥</mo><mn>2</mn></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&gt;</mo><mn>0</mn></mrow></math>，函数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mi>:</mi><msubsup><mi>Δ</mi><mi>B</mi><mi>M</mi></msubsup><mo>→</mo><mi>ℝ</mi></mrow></math> 连续且置换不变。记连续均匀分配为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo>=</mo><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo>,</mo><mi>…</mi><mo>,</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mo>.</mo></mrow></math></div>
+<h3 id="31-可微性均匀分配是一阶驻点">3.1 可微性：均匀分配是一阶驻点</h3>
+<p>如果 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 在 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 的相对邻域内可微，则 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 满足约束优化的一阶驻点条件。</p>
+<p>**这不能决定极值方向：**仅凭对称性与可微性，无法判断 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是最小值、最大值还是退化鞍点。</p>
+<h3 id="32-凸性均匀分配全局最优">3.2 凸性：均匀分配全局最优</h3>
+<p>如果 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 在整个 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>Δ</mi><mi>B</mi><mi>M</mi></msubsup></mrow></math> 上为凸函数，则 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是全局最小值点。如果 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 严格凸，则 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是唯一的连续最优解。</p>
+<h3 id="33-成对平均不要求整体凸性的充分条件">3.3 成对平均：不要求整体凸性的充分条件</h3>
+<p>如果对任意可行分配 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> 和任意两个坐标 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></math>，用二者的均值替换 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>,</mo><msub><mi>n</mi><mi>j</mi></msub></mrow></math> 都不会增加 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math>，则 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是全局最小值点。</p>
+<p>这一条件直接约束“把分配变得更均衡”是否有利，不要求 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 整体凸。</p>
+<h3 id="34-整数预算至少存在一个平衡最优解">3.4 整数预算：至少存在一个平衡最优解</h3>
+<p>如果 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> 为正整数、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>n</mi><mi>i</mi></msub></mrow></math> 为非负整数，并且满足第 3.2 节的凸性条件，则至少存在一个全局最优整数分配，其每个坐标都取</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">⌊</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">⌋</mo></mrow><mspace width="1em" /><mtext>或</mtext><mspace width="1em" /><mrow><mo stretchy="true" fence="true" form="prefix">⌈</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">⌉</mo></mrow><mo>.</mo></mrow></math></div>
+<p>如果 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 严格凸，则每个整数最优解都具有这种形式，差别仅在坐标置换。非严格凸时，只能保证<strong>存在一个</strong>平衡最优解，不能要求所有最优解都平衡。</p>
+<h2 id="4-命题-1-的完整证明">4. 命题 1 的完整证明</h2>
+<h3 id="41-一阶驻点条件">4.1 一阶驻点条件</h3>
+<p>置换不变性与可微性意味着，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 处梯度的各分量相同，因此可写为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>∇</mo><mi>R</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>=</mo><mi>λ</mi><mn>𝟏</mn><mo>.</mo></mrow></math></div>
+<p>任意可行切向量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi></mrow></math> 满足 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>∑</mo><mi>i</mi></msub><msub><mi>h</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn></mrow></math>，所以</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>D</mi><mi>R</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mi>h</mi><mo stretchy="false">]</mo><mo>=</mo><mi>λ</mi><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><msub><mi>h</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>.</mo></mrow></math></div>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 位于单纯形的相对内部，故满足约束一阶驻点条件。这一步不需要 Hessian 非退化，也没有推出局部最优性。</p>
+<h3 id="42-凸性与置换平均">4.2 凸性与置换平均</h3>
+<p>记 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>𝔖</mi><mi>M</mi></msub></mrow></math> 为所有 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math> 个坐标的置换集合。任意分配的全部置换取平均，都会得到 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math>：</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>M</mi><mo>!</mo></mrow></mfrac><munder><mo>∑</mo><mrow><mi>π</mi><mo>∈</mo><msub><mi>𝔖</mi><mi>M</mi></msub></mrow></munder><mi>π</mi><mi>n</mi><mo>.</mo></mrow></math></div>
+<p>由 Jensen 不等式与置换不变性，</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>≤</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>M</mi><mo>!</mo></mrow></mfrac><munder><mo>∑</mo><mrow><mi>π</mi><mo>∈</mo><msub><mi>𝔖</mi><mi>M</mi></msub></mrow></munder><mi>R</mi><mo stretchy="false">(</mo><mi>π</mi><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>因此 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是全局最小值点。若 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 严格凸，则任何非均匀分配的置换不全相同，Jensen 不等式严格成立，从而连续最优解唯一。</p>
+<h3 id="43-反复成对平均收敛到均匀分配">4.3 反复成对平均收敛到均匀分配</h3>
+<p>从任意 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> 出发，每次将最大坐标和最小坐标替换为二者均值。根据第 3.3 节的假设，每步风险都不增加。</p>
+<p>定义分配偏离均匀点的程度为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><msup><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo>−</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow></math></div>
+<p>每次平均操作使 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi></mrow></math> 恰好减少</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mrow><mo>max</mo></mrow></msub><mo>−</mo><msub><mi>n</mi><mrow><mo>min</mo></mrow></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn></mrow></mfrac><mo>.</mo></mrow></math></div>
+<p>又因为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>≤</mo><mi>M</mi><mo stretchy="false">(</mo><msub><mi>n</mi><mrow><mo>max</mo></mrow></msub><mo>−</mo><msub><mi>n</mi><mrow><mo>min</mo></mrow></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>,</mo></mrow></math></div>
+<p>记第 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> 步的值为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>t</mi></msub></mrow></math>，便有</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>V</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>≤</mo><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><msub><mi>V</mi><mi>t</mi></msub><mo>.</mo></mrow></math></div>
+<p>因此 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>t</mi></msub><mo>→</mo><mn>0</mn></mrow></math>，也就是 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>n</mi><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></msup><mo>→</mo><mi>u</mi></mrow></math>。结合每步风险不增与 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 的连续性，可得</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>≤</mo><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<h3 id="44-整数预算下的一单位平衡">4.4 整数预算下的一单位平衡</h3>
+<p>设某个整数分配中有两个坐标</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>a</mi><mo>=</mo><msub><mi>n</mi><mi>i</mi></msub><mo>,</mo><mspace width="2em" /><mi>b</mi><mo>=</mo><msub><mi>n</mi><mi>j</mi></msub><mo>,</mo><mspace width="2em" /><mi>a</mi><mo>≥</mo><mi>b</mi><mo>+</mo><mn>2</mn><mo>.</mo></mrow></math></div>
+<p>令 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>d</mi><mo>=</mo><mi>a</mi><mo>−</mo><mi>b</mi></mrow></math>，并令 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>n</mi><mi>′</mi></msup></mrow></math> 为交换这两个坐标后的向量。从较大坐标移出一个 episode、加到较小坐标上，得到的向量可写为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mover><mi>n</mi><mo stretchy="false">~</mo></mover><mo>=</mo><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>d</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mi>n</mi><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>d</mi></mrow></mfrac><msup><mi>n</mi><mi>′</mi></msup><mo>.</mo></mrow></math></div>
+<p>由凸性及置换不变性，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mo stretchy="false">(</mo><mover><mi>n</mi><mo stretchy="false">~</mo></mover><mo stretchy="false">)</mo><mo>≤</mo><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></math>；严格凸时为严格小于。每次操作还会使 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>∑</mo><mi>i</mi></msub><msubsup><mi>n</mi><mi>i</mi><mn>2</mn></msubsup></mrow></math> 减少</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mn>2</mn><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn><mo>.</mo></mrow></math></div>
+<p>因此，经过有限次操作后，所有坐标之差至多为 1。具体地，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>mod</mo><mi>M</mi></mrow></math> 个坐标取 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>⌈</mi><mi>B</mi><mo>/</mo><mi>M</mi><mi>⌉</mi></mrow></math>，其余取 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>⌊</mi><mi>B</mi><mo>/</mo><mi>M</mi><mi>⌋</mi></mrow></math>。</p>
+<p>从一个整数最优解出发进行上述不增风险的操作，即可得到一个平衡最优解；严格凸时，不平衡分配会被严格改进，因此不可能最优。命题得证。</p>
+<h3 id="45-其他充分条件以及它们的边界">4.5 其他充分条件，以及它们的边界</h3>
+<p>如果风险可分离为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>M</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><mi>r</mi><mo stretchy="false">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>,</mo></mrow></math></div>
+<p>且 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>r</mi></mrow></math> 为凸函数，则 Jensen 不等式直接给出</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>≥</mo><mi>r</mi><mspace width="negativethinmathspace" /><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mo>=</mo><mi>R</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>如果还希望表达“增加暴露次数不增加风险”，可以另加 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>r</mi></mrow></math> 递减的假设；但递减性不是固定预算下均匀最优证明所必需的。</p>
+<p>置换不变且 Schur-凸也是充分条件，因为每个可行分配 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> 都 majorizes <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math>。上述条件都不是必要条件：某个非凸风险函数仍可能以 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 为全局最小值点。</p>
+<h2 id="5-四个反例对称性不能决定极值方向">5. 四个反例：对称性不能决定极值方向</h2>
+<p>继续使用</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><msup><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo>−</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mi>M</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow></math></div>
+<p>下面的构造在各自指定的单纯形上均连续、光滑、置换不变且非负，却在均匀点表现不同。</p>
+<h3 id="51-均匀点是唯一全局最小值点">5.1 均匀点是唯一全局最小值点</h3>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>R</mi><mrow><mo>min</mo></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>只有 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi><mo>=</mo><mi>u</mi></mrow></math> 时 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow></math>，因此 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是唯一全局最小值点。</p>
+<h3 id="52-均匀点是唯一全局最大值点">5.2 均匀点是唯一全局最大值点</h3>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>R</mi><mrow><mo>max</mo></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>−</mo><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>.</mo></mrow></math></div>
+<p>由于 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>≤</mo><msup><mi>B</mi><mn>2</mn></msup></mrow></math>，该函数非负。此时 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是唯一全局最大值点，而最小值出现在边界。因此，对称性不足以推出局部或全局最小值。</p>
+<h3 id="53-均匀点是退化鞍点取-m--3">5.3 均匀点是退化鞍点：取 M = 3</h3>
+<p>对三个任务，考虑</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>R</mi><mrow><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi></mrow></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>B</mi><mn>3</mn></msup><mo>+</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mn>3</mn></mrow></munderover><mrow><mo stretchy="true" fence="true" form="prefix">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo>−</mo><mfrac><mrow><mi>B</mi></mrow><mrow><mn>3</mn></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">)</mo></mrow><mo>.</mo></mrow></math></div>
+<p>在 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 附近沿两个可行扰动</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo stretchy="false">(</mo><mn>2</mn><mi>t</mi><mo>,</mo><mo>−</mo><mi>t</mi><mo>,</mo><mo>−</mo><mi>t</mi><mo stretchy="false">)</mo><mspace width="2em" /><mtext>与</mtext><mspace width="2em" /><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mi>t</mi><mo>,</mo><mi>t</mi><mo>,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>,</mo></mrow></math></div>
+<p>乘积项分别为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>t</mi><mn>3</mn></msup></mrow></math> 和 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>−</mo><mn>2</mn><msup><mi>t</mi><mn>3</mn></msup></mrow></math>。因此，在 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 的任意充分小邻域内，都有风险更高和更低的分配，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi></mrow></math> 是退化鞍点。常数项 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>B</mi><mn>3</mn></msup></mrow></math> 保证函数非负。</p>
+<p>这个例子只需取 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>=</mo><mn>3</mn></mrow></math> 即可说明问题。对应的一般乘积形式 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></msubsup><mo stretchy="false">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo>−</mo><mi>B</mi><mo>/</mo><mi>M</mi><mo stretchy="false">)</mo></mrow></math> <strong>不作为任意 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&gt;</mo><mn>3</mn></mrow></math> 时统一适用的鞍点构造</strong>。</p>
+<h3 id="54-均匀点全局最优但并不唯一">5.4 均匀点全局最优，但并不唯一</h3>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>≡</mo><mi>c</mi><mo>,</mo><mspace width="2em" /><mi>c</mi><mo>≥</mo><mn>0</mn><mo>.</mo></mrow></math></div>
+<p>所有分配都有相同风险，因此全部最优。这也说明，非严格凸的整数结论只能保证存在一个平衡最优解，不能描述全部最优解。</p>
+<p>这些函数是<strong>逻辑反例</strong>，并不声称它们能够由 PFN 训练过程实现。另需注意：非退化的置换对称驻点，其约束切空间上的 Hessian 为单位阵的标量倍，因此这里的真正鞍点必须退化；上述三次项构造正是这种情形。</p>
+<h2 id="6-命题-2-的假设与扩展计划">6. 命题 2 的假设与扩展计划</h2>
+<p><strong>状态：仅完成模型与假设设定，尚未给出命题 2 的推导。</strong></p>
+<p>下一阶段拟研究任务数量与每任务暴露次数之间的权衡。为此，先采用一个随机效应模型；它的目标是估计 cluster 平均标量信号 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>μ</mi></mrow></math> 的方差，而不是直接计算 PFN 的测试风险。</p>
+<h3 id="61-信号模型">6.1 信号模型</h3>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>G</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>μ</mi><mo>+</mo><msub><mi>U</mi><mi>i</mi></msub><mo>+</mo><msub><mi>ε</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>.</mo></mrow></math></div>
+<p>假设如下：</p>
+<ul>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>U</mi><mi>i</mi></msub></mrow></math> 在不同任务间独立同分布，均值为 0、方差为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>τ</mi><mn>2</mn></msup></mrow></math>；</li>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>ε</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math> 在不同任务及 episodes 间相互独立，均值为 0、方差为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow></math>；</li>
+<li>全部 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>ε</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math> 与全部 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>U</mi><mi>i</mi></msub></mrow></math> 相互独立。</li>
+</ul>
+<p>令 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>,</mo><mi>E</mi></mrow></math> 为非随机正整数，每个任务恰好抽取 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi></mrow></math> 个 episodes。估计量为</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mover accent="true"><mi>μ</mi><mo>^</mo></mover><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>M</mi><mi>E</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>M</mi></mrow></munderover><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>E</mi></mrow></munderover><msub><mi>G</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>.</mo></mrow></math></div>
+<h3 id="62-成本约束与尚待推导的部分">6.2 成本约束与尚待推导的部分</h3>
+<p>设每个 unique task 的固定成本为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>c</mi><mn>0</mn></msub><mo>≥</mo><mn>0</mn></mrow></math>，每个 episode 的成本为 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>&gt;</mo><mn>0</mn></mrow></math>。总成本满足</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>M</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mn>0</mn></msub><mo>+</mo><msub><mi>c</mi><mn>1</mn></msub><mi>E</mi><mo stretchy="false">)</mo><mo>≤</mo><msub><mi>B</mi><mrow><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi></mrow></mrow></msub><mo>.</mo></mrow></math></div>
+<p>连续松弛将在 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>,</mo><mi>E</mi><mo>≥</mo><mn>1</mn></mrow></math> 的范围内进行。在 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>τ</mi><mn>2</mn></msup><mo>,</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>,</mo><msub><mi>c</mi><mn>0</mn></msub><mo>&gt;</mo><mn>0</mn></mrow></math> 的内部情形，预计会出现平方根形式的解；其具体表达及方差公式仍待推导。整数可行性、边界解、退化情形及相关 episodes 的修正，也留待下一阶段研究。</p>
+<p>这里的随机性来自任务随机效应与 episode 抽样，不包含训练优化轨迹。若把 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>G</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math> 解释成一个梯度坐标，还需要指定同一个参数检查点及相应总体梯度，否则 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>μ</mi></mrow></math> 不是一个固定的估计目标。</p>
+<h3 id="63-两项后续扩展">6.3 两项后续扩展</h3>
+<p>**相关 episodes。**显式规定同一任务内因共享数据行而产生的协方差，再推导有效样本量及成本最优分配。</p>
+<p>**多个 cluster。**后续再研究 cluster 之间的分配；本轮不推导这一问题。</p>
+<h2 id="7-应用边界与验证思路">7. 应用边界与验证思路</h2>
+<h3 id="71-与-pfndpt-训练的联系">7.1 与 PFN／DPT 训练的联系</h3>
+<p>本节沿用原稿的 PFN／DPT 缩写。在第 2 节的框架下，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover></mrow></math> 可以定义为完整训练后的事前测试风险；但风险的置换不变性需要训练协议满足等变性，凸性或成对平均条件也尚无针对 PFN 的证明。</p>
+<p>把 episode 次数作为训练资源时，需要固定上下文集／查询集规格，并明确批大小和步数规则。一个任务只出现一次是否已经提供充分训练信号，是后续的机制问题，不能由命题 1 直接判断。</p>
+<h3 id="72-本轮不能回答什么">7.2 本轮不能回答什么</h3>
+<ul>
+<li>**尚无真实 PFN 风险的解析式。**也尚未验证其凸性或成对平均条件。</li>
+<li>**固定 M 不等于解决最优任务数量。**一旦允许改变任务库容量，或引入任务启动成本，目标函数与可行域都会变化。</li>
+<li>**名义预算不等于独立信息量。**在同一有限表上反复抽取 episodes 时，<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> 不能直接解释为独立信息总量。</li>
+<li>**事前最优不等于每个任务库都最优。**已经实现的任务库可能包含难度不同的任务，其条件最优分配可以不均匀。</li>
+</ul>
+<h3 id="73-可检验预测先检验假设而非宣称定理适用于训练">7.3 可检验预测：先检验假设，而非宣称定理适用于训练</h3>
+<p>下一步拟进行一个条件化的 CPU 小样本检验：固定任务库生成机制、episode 规格、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math> 及优化更新规则，在多个任务库和训练随机种子上估计事前风险 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover></mrow></math>。</p>
+<p>比较一个非均匀分配 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> 与对其两个坐标执行一次平均后的分配。用 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>avg</mo><mrow><mi>i</mi><mi>j</mi></mrow></msub><mi>n</mi></mrow></math> 表示该操作，若稳定观察到</p>
+<div class="equation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>R</mi><mo stretchy="false">(</mo><msub><mo>avg</mo><mrow><mi>i</mi><mi>j</mi></mrow></msub><mi>n</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mi>R</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>,</mo></mrow></math></div>
+<p>就说明该训练设置不满足命题 1 第 3 条的成对平均假设，不能据此套用均匀最优结论。为与命题 1 对应，这里使用抽象 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> 记号；实验目标是上文跨任务库平均的风险，而不是假定某个固定任务库的风险已经对称。</p>
+<p>对于整数预算，改用第 4.4 节的一单位平衡操作。此类实验用于检验假设，不能证明该假设对所有分配都成立；本文尚未报告此项实验的执行结果。</p>
+<h2 id="8-文献定位与待确认问题">8. 文献定位与待确认问题</h2>
+<h3 id="81-哪些结论已有文献基础">8.1 哪些结论已有文献基础</h3>
+<p>Cioba 等在 AAAI 2022 论文的 Theorem 1 中，已经讨论置换不变条件下的均匀局部极值，以及成对平均不增加风险时的全局最小值。其预算单位是各任务的训练与验证数据点，并在 MAML 与混合线性回归框架下研究。</p>
+<p>**命题 1 的核心均匀分配结论不是新结果。**这份笔记的作用，是在 episode 记号下澄清“对称性仅给出驻点”、条件风险与事前风险的区别，以及整数暴露次数的表述，而不将这些澄清单独声明为理论创新。</p>
+<p>证明使用的 Jensen 不等式、majorization／Schur-凸性与成对平衡，也是经典数学工具，本文不将它们列为原创结果。</p>
+<p>与随机效应／cluster sampling、Neyman allocation、learning-curve allocation、task sampling 及稳健权重的系统文献对照仍待后续完成；本轮不据此提出新颖性主张。</p>
+<p><strong>参考文献</strong></p>
+<p>Cioba, A., Bromberg, M., Wang, Q., Niyogi, R., Batzolis, G., Garcia, J., Shiu, D.-S., &amp; Bernacchia, A. (2022). <em>How to Distribute Data across Tasks for Meta-Learning?</em> Proceedings of the AAAI Conference on Artificial Intelligence, 36(6), 6394–6401. <a href="https://doi.org/10.1609/aaai.v36i6.20590">DOI 与正式出版页</a> · <a href="https://cdn.aaai.org/ojs/20590/20590-13-24603-1-2-20220628.pdf">出版社 PDF</a></p>
+<h3 id="82-仍需与导师确认的五项建模选择">8.2 仍需与导师确认的五项建模选择</h3>
+<ol>
+<li>**任务身份。**任务应定义为生成机制、单表中的名义任务，还是同时保留两层定义？同一数据表中不同的目标／特征组合，何时算作不同任务？</li>
+<li>**优化目标。**第一阶段关注随机任务库的事前风险 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>R</mi><mo stretchy="true">¯</mo></mover></mrow></math>，还是给定任务库的条件风险 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mrow><mi>𝐓</mi></mrow></msub></mrow></math>？如果是后者，是否允许根据任务难度作非均匀分配？</li>
+<li>**预算单位。**预算按呈现的 episodes、独立采集的数据行、数据单元／tokens，还是实际算力计量？新增任务的固定成本是否真实存在？</li>
+<li>**实验控制。**比较不同分配时，上下文集／查询集大小、总训练步数、批大小与学习率日程中，哪些必须固定？不能全部固定时，以哪个量作为主要控制？</li>
+<li>**替代目标与模型表现的联系。**第一阶段直接研究最终测试风险，还是先研究固定检查点的梯度／信号方差？需要什么证据，才允许从这个替代目标推到实际模型表现？</li>
+</ol>
+<h3 id="83-本轮结论与下一步">8.3 本轮结论与下一步</h3>
+<p>本轮完成了风险对象和预算口径的区分，并证明了命题 1：均匀分配在对称且可微时满足一阶驻点条件；在额外的凸性或成对平均条件下达到全局最优；凸性下的整数预算至少存在一个平衡最优解。反例说明，对称性本身不足以保证最优。</p>
+<p>下一步是在任务固定成本与 episode 相关性下推导随机效应模型的方差最优分配，检查整数、边界及退化情形，再检验这一替代问题能否解释真实训练表现。这些仍是研究计划，不是本轮已经得到的结果。</p>
+<hr>
+<p><em>版本说明：本公开阅读版由原理论作业改写，调整了标题、章节顺序、术语说明与阅读导航。原有定义、条件命题、证明、反例、限制及后续问题均予保留；计数口径的歧义已显式标出。本文不包含另行开展的模拟实验，也不新增经验结果。</em></p>
+<footer>本页由同目录 README.md 自动排版，正文与公式来自同一版本。建议使用较新的 Edge、Chrome、Firefox 或 Safari 打开。</footer></main></div></body></html>
